@@ -22,7 +22,7 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    next( vm =>{
+    next(vm => {
       console.log(vm)
     })
   },
@@ -37,9 +37,9 @@ export default {
   },
   methods: {
     handleClick (type) {
-      if(type === 'back') this.$router.back()
-      else if(type === 'push') this.$router.push('/parent')
-      else if(type === 'replace') this.$router.replace('/parent')
+      if (type === 'back') this.$router.back()
+      else if (type === 'push') this.$router.push('/parent')
+      else if (type === 'replace') this.$router.replace('/parent')
     }
   }
 

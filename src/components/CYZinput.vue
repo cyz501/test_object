@@ -14,7 +14,6 @@ export default {
     handleInput (event) {
       const value = event.target.value
       this.$emit('input', value)
-
     }
   }
 }

@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  props:{
+  props: {
     content: {
       type: [String, Number],
       default: ''
@@ -13,4 +13,3 @@ export default {
   }
 }
 </script>
-

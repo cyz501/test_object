@@ -26,9 +26,6 @@
     "mockjs": "^1.0.1-beta3",
     "vue-template-compiler": "^2.5.21"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint",
