@@ -1,16 +1,16 @@
 <template>
   <div>
-    <CYZinput @input="handleInput"/>
-    <!-- <p>{{ inputValue }} -> lastLetter is {{ inputValueLastLetter }}</p> -->
+    <CYZinput v-model="stateValue"/>
+    <p>stateValue:{{ stateValue }} -> lastLetter is {{ inputValueLastLetter }}</p>
     <!-- <CYZshow :content="inputValue"/> -->
-    <p>appName:{{ appName }},appNameWithVersion: {{appNameWithVersion}}</p>
-    <p>userName:{{ userName }}</p>
+    <!-- <p>appName:{{ appName }},appNameWithVersion: {{appNameWithVersion}}</p> -->
+    <!-- <p>userName:{{ userName }}</p> -->
     <!-- <p>firstLetter:{{ firstLetter }}</p> -->
-    <p>appVersion:{{ appVersion }}</p>
-    <button @click="changeAppName">修改appName</button>
-    <button @click="updateUserName">修改userName</button>
-    <button @click="registerModule">动态注册模块</button>
-    <p v-for="(li, index) in todoList" :key="index">{{ li }}</p>
+    <!-- <p>appVersion:{{ appVersion }}</p> -->
+    <!-- <button @click="changeAppName">修改appName</button> -->
+    <!-- <button @click="updateUserName">修改userName</button> -->
+    <!-- <button @click="registerModule">动态注册模块</button> -->
+    <!-- <p v-for="(li, index) in todoList" :key="index">{{ li }}</p> -->
   </div>
 </template>
 <script>
@@ -40,6 +40,14 @@ export default {
       appVersion: state => state.appVersion,
       todoList: state => state.user.todo ? state.user.todo.todoList : []
     }),
+    stateValue: {
+      get () {
+        return this.$store.state.stateValue
+      },
+      set (value) {
+        this.SET_STATE_VALUE(value)
+      }
+    },
     ...mapGetters([
       'appNameWithVersion',
       'firstLetter'
@@ -60,7 +68,8 @@ export default {
   methods: {
     ...mapMutations([
       'SET_APP_NAME',
-      'SET_USER_NAME'
+      'SET_USER_NAME',
+      'SET_STATE_VALUE'
     ]),
     ...mapActions([
       'updateAppName'
