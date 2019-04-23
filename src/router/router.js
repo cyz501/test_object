@@ -66,6 +66,10 @@ export default [{
   component: () => import('@/views/store.vue')
 },
 {
+  path: '/count-to',
+  component: () => import('@/views/count-to.vue')
+},
+{
   path: '*',
   component: () => import('@/views/error_404.vue')
 }

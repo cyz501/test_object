@@ -13,7 +13,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import axios from 'axios'
+import { getUserInfo } from '@/api/user'
 
 export default {
   name: 'home',
@@ -44,8 +44,8 @@ export default {
       else if (type === 'replace') this.$router.replace('/parent')
     },
     getInfo () {
-      axios.post('/', { userid: 21}).then(res => {
-        console.log(res)
+      getUserInfo({ userId: 21}).then(res => {
+        console.log('res:', res);
       })
     }
   }

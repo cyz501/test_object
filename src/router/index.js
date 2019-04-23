@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
-import { setTitle } from '@/lib/util'
+import { getToken } from '@/lib/util'
 
 Vue.use(Router)
 
@@ -13,7 +13,7 @@ const HAS_LOGINED = true
 
 router.beforeEach((to, from, next) => {
   // to and from are Route Object,next() must be called to resolve the hook
-  to.meta && setTitle(to.meta.title)
+  to.meta && getToken(to.meta.title)
   if (to.name !== 'login') {
     if (HAS_LOGINED) next()
     else next({ name: 'login' })
