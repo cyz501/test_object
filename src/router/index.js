@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
-import { getToken } from '@/lib/util'
+import store from '@/store'
+import { getTitle, setToken, getToken } from '@/lib/util'
 
 Vue.use(Router)
 
@@ -9,17 +10,32 @@ const router = new Router({
   routes
 })
 
-const HAS_LOGINED = true
+// const HAS_LOGINED = false
 
 router.beforeEach((to, from, next) => {
   // to and from are Route Object,next() must be called to resolve the hook
-  to.meta && getToken(to.meta.title)
-  if (to.name !== 'login') {
-    if (HAS_LOGINED) next()
-    else next({ name: 'login' })
+  to.meta && getTitle(to.meta.title)
+  // if (to.name !== 'login') {
+  //   if (HAS_LOGINED) next()
+  //   else next({ name: 'login' })
+  // } else {
+  //   if (HAS_LOGINED) next({ name: 'home' })
+  //   else next()
+  // }
+  const token = getToken()
+  if (token) {
+    store.dispatch('authorization', token).then(() => {
+      if (to.name === 'login') next({ name: 'home' })
+      else next()
+      console.log(222)
+    }).catch(() => {
+      console.log(111)
+      setToken('')
+      next({ name: 'login' })
+    })
   } else {
-    if (HAS_LOGINED) next({ name: 'home' })
-    else next()
+    if (to.name === 'login') next()
+    else next({ name: 'login' })
   }
 })
 
